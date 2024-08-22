@@ -8,4 +8,6 @@ class HelloWorld{
 //para compilar, utilize abaixo:
 //ls = javac HelloWorld.java = java HelloWorld
 
-//add:
+//add
+
+/* utilize essas barras com estrela para comentario de varias linhas */
