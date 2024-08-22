@@ -1,4 +1,4 @@
-class gastos{
+class atividade{
     public static void main(String[] args) {
 
         //gastos de 3 meses inteiros
