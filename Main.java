@@ -1,28 +1,39 @@
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeParseException;
+
 class Tarefa {
-    // Atributos privados
     private String titulo;
     private String descricao;
     private String prazo;
     private int prioridade;
 
-    // Construtor
+    // Método para validar prazo
+    private boolean isPrazoValido(String prazo) {
+        try {
+            LocalDate.parse(prazo);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    // Construtor completo
     public Tarefa(String titulo, String descricao, String prazo, int prioridade) {
         this.titulo = titulo;
         this.descricao = descricao;
-        this.prazo = prazo;
+        this.setPrazo(prazo); // Usando o setter para validar o prazo
         this.prioridade = prioridade;
     }
 
-    public Tarefa(String titulo) {
-        this.titulo = titulo;
-        this.descricao = new String();
-        this.prazo = "";
-        this.prioridade = 0;
+    // Construtor com menos parâmetros
+    public Tarefa(String titulo, String prazo) {
+        this(titulo, "", prazo, 0); // Chamando o construtor completo com valores padrão
     }
 
-    // Métodos Get e Set
+    // Métodos getters e setters
     public String getTitulo() {
-        return this.titulo;
+        return titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -30,26 +41,57 @@ class Tarefa {
     }
 
     public String getDescricao() {
-        return this.descricao;
+        return descricao;
     }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    // Implementar getters e settes para os outros atributos
+    public String getPrazo() {
+        return prazo;
+    }
+
+    public void setPrazo(String prazo) {
+        if (isPrazoValido(prazo)) {
+            this.prazo = prazo;
+        } else {
+            System.out.println("Data inválida.");
+        }
+    }
+
+    public int getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(int prioridade) {
+        // Adicione aqui a lógica para validar a prioridade se necessário
+        this.prioridade = prioridade;
+    }
+
     public void exibirDetalhes() {
-        System.out.println("Título: " + this.titulo);
-        System.out.println("Descrição: " + this.descricao);
-        System.out.println("Prazo: " + this.prazo);
-        System.out.println("Prioridade: " + this.prioridade);
+        System.out.println("Título: " + titulo);
+        System.out.println("Descrição: " + descricao);
+        System.out.println("Prazo: " + prazo);
+        System.out.println("Prioridade: " + prioridade);
+    }
+
+    public long calcularDiasRestantes() {
+        LocalDate dataPrazo = LocalDate.parse(prazo);
+        LocalDate hoje = LocalDate.now();
+        return ChronoUnit.DAYS.between(hoje, dataPrazo);
     }
 }
 
 public class Main {
-    public static void main(String[] args){
-        Tarefa tarefa1 = new Tarefa("Estudar POO", "Revisar os conceitos de classes e objetos", "06-09-2024", 1);
-        System.out.println("Título: " + tarefa1.getTitulo());
+    public static void main(String[] args) {
+        Tarefa tarefa1 = new Tarefa("Estudar POO", "Revisar os conceitos de classes e objetos", "2024-09-15", 1);
+        tarefa1.exibirDetalhes();
+
+        System.out.println("Dias restantes: " + tarefa1.calcularDiasRestantes());
+
+        // Tentando setar um prazo inválido
+        tarefa1.setPrazo("2024-15-48");
         tarefa1.exibirDetalhes();
     }
 }
