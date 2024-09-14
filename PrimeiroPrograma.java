@@ -1,4 +1,4 @@
-package primeiroprograma;
+
 //pacotes podem possuir varias classes com varios metodos
 public class PrimeiroPrograma {
 //esta é uma classe onde pode ter varios metodos
