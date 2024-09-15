@@ -1,3 +1,4 @@
+package TarefasDeSala;
 public class Tarefa {
     private String titulo;
     private String descricao;

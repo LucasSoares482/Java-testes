@@ -1,3 +1,5 @@
+package CursoEmVideo;
+
 
 //pacotes podem possuir varias classes com varios metodos
 public class PrimeiroPrograma {

@@ -2,21 +2,11 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.format.DateTimeParseException;
 
-class Tarefa {
+public class Tarefa {
     private String titulo;
     private String descricao;
     private String prazo;
     private int prioridade;
-
-    // Método para validar prazo
-    private boolean isPrazoValido(String prazo) {
-        try {
-            LocalDate.parse(prazo);
-            return true;
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
 
     // Construtor completo
     public Tarefa(String titulo, String descricao, String prazo, int prioridade) {
@@ -80,6 +70,16 @@ class Tarefa {
         LocalDate dataPrazo = LocalDate.parse(prazo);
         LocalDate hoje = LocalDate.now();
         return ChronoUnit.DAYS.between(hoje, dataPrazo);
+    }
+
+    // Método para validar prazo
+    private boolean isPrazoValido(String prazo) {
+        try {
+            LocalDate.parse(prazo);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 }
 

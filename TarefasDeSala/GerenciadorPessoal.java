@@ -1,3 +1,4 @@
+package TarefasDeSala;
 
 public class GerenciadorPessoal {
     public static void main(String[] args) {
